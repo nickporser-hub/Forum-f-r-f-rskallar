@@ -9,11 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $connection = new mysqli("localhost", "root", "", "farforum");
 
-    $username = $_POST["username"];
+    if ($connection->connect_error) {
+        die("Database connection failed!");
+    }
+
+    $username = trim($_POST["username"]);
     $password = $_POST["password"];
 
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $connection->prepare($sql);
+
     $stmt->bind_param("s", $username);
     $stmt->execute();
 
@@ -46,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Farforum - Login</title>
@@ -66,9 +72,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <button type="submit">Login</button>
 
-        <p><?php echo htmlspecialchars($error); ?></p>
+        <p style="color:red;">
+            <?php echo htmlspecialchars($error); ?>
+        </p>
 
     </form>
+
+    <p>Don't have an account?</p>
+
+    <a href="register.php">Create an account</a>
 
 </body>
 </html>
