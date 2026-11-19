@@ -2,7 +2,7 @@
 <?php
 session_start();
 
-// Check if user is logged in
+// kolla om användare är inlogga
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit();
@@ -23,7 +23,6 @@ $result = $connection->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Farforum</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

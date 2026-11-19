@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Password must be at least 8 characters!";
     } else {
 
-        // Check if username already exists
+        // kolla om användarnamnet redan finns
         $sql = "SELECT id FROM users WHERE username = ?";
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("s", $username);
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Hash password
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Create new user
+            // skapa ny användare
             $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
             $stmt = $connection->prepare($sql);
             $stmt->bind_param("ss", $username, $hashedPassword);
@@ -55,7 +55,6 @@ $connection->close();
 <head>
     <meta charset="UTF-8">
     <title>Farforum - Register</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

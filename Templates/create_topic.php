@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Please fill in all fields!";
     } else {
 
-        // Create the topic
+        // skapa topic
         $sql = "INSERT INTO topics (title, user_id)
                 VALUES (?, ?)";
 
@@ -29,10 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("si", $title, $user_id);
         $stmt->execute();
 
-        // Get the new topic ID
+        // ta nya topic id
         $topic_id = $connection->insert_id;
 
-        // Create the first post
+        // skapa första inlägget
         $sql = "INSERT INTO posts (topic_id, user_id, content)
                 VALUES (?, ?, ?)";
 
@@ -53,7 +53,6 @@ $connection->close();
 <head>
     <meta charset="UTF-8">
     <title>Create Topic - Farforum</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

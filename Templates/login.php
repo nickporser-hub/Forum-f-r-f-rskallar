@@ -55,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Farforum - Login</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
